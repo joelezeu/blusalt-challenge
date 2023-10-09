@@ -1,7 +1,6 @@
 package com.bluesalt.challenge.models;
 
-
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
