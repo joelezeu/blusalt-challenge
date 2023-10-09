@@ -65,6 +65,10 @@ public class DispatchService {
             throw new ChallengeException("Drone cannot carry this medication due to weight limit", HttpStatus.EXPECTATION_FAILED);
         }
 
+        if (drone.getBatteryCapacity() < 25) {
+            throw new ChallengeException("Drone's battery level is below 25%, cannot load medications", HttpStatus.EXPECTATION_FAILED);
+        }
+
         medication.setDrone(drone);
 
         drone.setState(Drone.DroneState.LOADED);
