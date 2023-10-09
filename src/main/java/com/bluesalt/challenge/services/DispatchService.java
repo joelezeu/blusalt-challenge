@@ -70,13 +70,11 @@ public class DispatchService {
 
         medication.setDrone(drone);
 
-        List<Medication> medicationList = new ArrayList<>();
-        medicationList.add(medication);
-
-        drone.setLoadedMedications(medicationList);
         drone.setState(Drone.DroneState.LOADED);
 
         drone = droneRepository.save(drone);
+
+        medicationRepository.save(medication);
 
         return responseUtils.getResponse(true, "Medication loaded onto the drone successfully", drone);
     }

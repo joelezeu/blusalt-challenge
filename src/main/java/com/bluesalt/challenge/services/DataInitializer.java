@@ -24,8 +24,8 @@ public class DataInitializer implements ApplicationRunner {
     private void initializeMedications() {
 
         Drone drone = new Drone();
-        drone.setState("IDLE");
-        drone.setModel("NEW_MOBEL");
+        drone.setState(Drone.DroneState.IDLE);
+        drone.setModel(Drone.DroneModel.Heavyweight);
         drone.setSerialNumber("1234");
         drone.setBatteryCapacity(25);
         drone.setWeightLimit(20.0);
