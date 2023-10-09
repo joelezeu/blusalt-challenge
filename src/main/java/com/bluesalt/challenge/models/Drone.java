@@ -20,8 +20,8 @@ public class Drone {
 
     private String serialNumber;
     private String model;
-    private double weightLimit;
-    private int batteryCapacity;
+    private Double weightLimit;
+    private Integer batteryCapacity;
     private String state;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "drone")
