@@ -32,10 +32,6 @@ public class Drone {
     @Enumerated(EnumType.STRING)
     private DroneState state;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "drone")
-    @ToString.Exclude
-    private List<Medication> loadedMedications;
-
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;

@@ -60,11 +60,8 @@ public class DispatchService {
         Medication medication = medicationOptional.get();
         Drone drone = droneOptional.get();
 
-        double totalWeight = drone.getLoadedMedications().stream()
-                .mapToDouble(Medication::getWeight)
-                .sum();
 
-        if (totalWeight + medication.getWeight() > drone.getWeightLimit()) {
+        if ( medication.getWeight() > drone.getWeightLimit()) {
             throw new ChallengeException("Drone cannot carry this medication due to weight limit", HttpStatus.EXPECTATION_FAILED);
         }
 
@@ -84,7 +81,9 @@ public class DispatchService {
         if (droneOptional.isEmpty()) {
             throw new ChallengeException("Drone not found", HttpStatus.NOT_FOUND);
         }
-        return responseUtils.getResponse(true, "Medications", droneOptional.get());
+
+        Drone drone = droneOptional.get();
+        return responseUtils.getResponse(true, "Medications", drone);
     }
 
     public ResponseEntity<Response> getAvailableDrones() {
