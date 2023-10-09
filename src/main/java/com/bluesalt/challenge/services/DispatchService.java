@@ -68,10 +68,13 @@ public class DispatchService {
             throw new ChallengeException("Drone cannot carry this medication due to weight limit", HttpStatus.EXPECTATION_FAILED);
         }
 
+        medication.setDrone(drone);
+
         List<Medication> medicationList = new ArrayList<>();
         medicationList.add(medication);
 
         drone.setLoadedMedications(medicationList);
+        drone.setState(Drone.DroneState.LOADED);
 
         drone = droneRepository.save(drone);
 

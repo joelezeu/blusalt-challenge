@@ -24,11 +24,13 @@ public class Drone {
     @NotBlank
     @Size(max = 100)
     private String serialNumber;
-    private String model;
+    @Enumerated(EnumType.STRING)
+    private DroneModel model;
     @Max(500)
     private Double weightLimit;
     private Integer batteryCapacity;
-    private String state;
+    @Enumerated(EnumType.STRING)
+    private DroneState state;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "drone")
     @ToString.Exclude
@@ -48,5 +50,20 @@ public class Drone {
     @Override
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+    }
+
+    public enum DroneModel {
+        Lightweight,
+        Middleweight,
+        Cruiserweight,
+        Heavyweight
+    }
+    public enum DroneState {
+        IDLE,
+        LOADING,
+        LOADED,
+        DELIVERING,
+        DELIVERED,
+        RETURNING
     }
 }
