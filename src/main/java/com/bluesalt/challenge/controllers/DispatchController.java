@@ -20,7 +20,7 @@ public class DispatchController {
     }
     // Load a Drone with Medication Items
     @PostMapping("/drones/{serialNumber}/load/{medicationCode}")
-    public ResponseEntity<String> loadDrone(@PathVariable String serialNumber, @PathVariable String medicationCode) {
+    public ResponseEntity<?> loadDrone(@PathVariable String serialNumber, @PathVariable String medicationCode) {
         return dispatchService.loadDrone(serialNumber, medicationCode);
     }
 }
