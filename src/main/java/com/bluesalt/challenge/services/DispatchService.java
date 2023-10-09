@@ -79,12 +79,26 @@ public class DispatchService {
         return responseUtils.getResponse(true, "Medication loaded onto the drone successfully", drone);
     }
 
-    public ResponseEntity<Response> getLoadedMedications(String serialNumber){
+    public ResponseEntity<Response> getLoadedMedications(String serialNumber) {
         Optional<Drone> droneOptional = droneRepository.findBySerialNumber(serialNumber);
-        if(droneOptional.isEmpty()){
+        if (droneOptional.isEmpty()) {
             throw new ChallengeException("Drone not found", HttpStatus.NOT_FOUND);
         }
         return responseUtils.getResponse(true, "Medications", droneOptional.get());
+    }
+
+    public ResponseEntity<Response> getAvailableDrones() {
+        List<Drone> drones = droneRepository.findAll();
+        return responseUtils.getResponse(true, "Drones", drones);
+    }
+
+    public ResponseEntity<Response> getDroneBattery(String serialNumber) {
+        Optional<Drone> droneOptional = droneRepository.findBySerialNumber(serialNumber);
+        if (droneOptional.isEmpty()) {
+            throw new ChallengeException("Drone not found", HttpStatus.NOT_FOUND);
+        }
+        Drone drone = droneOptional.get();
+        return responseUtils.getResponse(true, "Drone battery level is " + drone.getBatteryCapacity() + "%", droneOptional.get());
     }
 
 }

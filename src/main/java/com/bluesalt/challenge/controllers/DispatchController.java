@@ -16,16 +16,30 @@ public class DispatchController {
     // Register a Drone
     @PostMapping("/drones")
     public ResponseEntity<?> registerDrone(@RequestBody DroneRequest drone) {
-       return dispatchService.registerDrone(drone);
+        return dispatchService.registerDrone(drone);
     }
+
     // Load a Drone with Medication Items
     @PostMapping("/drones/{serialNumber}/load/{medicationCode}")
     public ResponseEntity<?> loadDrone(@PathVariable String serialNumber, @PathVariable String medicationCode) {
         return dispatchService.loadDrone(serialNumber, medicationCode);
     }
+
     // Get Loaded Medication Items for a Given Drone
     @GetMapping("/drones/{serialNumber}/loaded-medications")
     public ResponseEntity<?> getLoadedMedications(@PathVariable String serialNumber) {
         return dispatchService.getLoadedMedications(serialNumber);
+    }
+
+    // Get Available Drones for Loading
+    @GetMapping("/drones/available")
+    public ResponseEntity<?> getAvailableDrones() {
+        return dispatchService.getAvailableDrones();
+    }
+
+    // Check Drone Battery Level for a Given Drone
+    @GetMapping("/drones/{serialNumber}/battery")
+    public ResponseEntity<?> getDroneBattery(@PathVariable String serialNumber) {
+        return dispatchService.getDroneBattery(serialNumber);
     }
 }
