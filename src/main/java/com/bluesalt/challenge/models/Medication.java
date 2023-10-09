@@ -1,6 +1,8 @@
 package com.bluesalt.challenge.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -18,6 +20,7 @@ public class Medication {
 
     private String name;
     private Double weight;
+    @Pattern(regexp = "[A-Z0-9_-]+")
     private String code;
     private String image;
 

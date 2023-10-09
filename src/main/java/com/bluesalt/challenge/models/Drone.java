@@ -1,6 +1,10 @@
 package com.bluesalt.challenge.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -17,8 +21,11 @@ public class Drone {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
+    @Size(max = 100)
     private String serialNumber;
     private String model;
+    @Max(500)
     private Double weightLimit;
     private Integer batteryCapacity;
     private String state;
