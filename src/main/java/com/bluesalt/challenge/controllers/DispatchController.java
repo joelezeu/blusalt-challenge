@@ -23,4 +23,9 @@ public class DispatchController {
     public ResponseEntity<?> loadDrone(@PathVariable String serialNumber, @PathVariable String medicationCode) {
         return dispatchService.loadDrone(serialNumber, medicationCode);
     }
+    // Get Loaded Medication Items for a Given Drone
+    @GetMapping("/drones/{serialNumber}/loaded-medications")
+    public ResponseEntity<?> getLoadedMedications(@PathVariable String serialNumber) {
+        return dispatchService.getLoadedMedications(serialNumber);
+    }
 }

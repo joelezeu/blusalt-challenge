@@ -79,4 +79,12 @@ public class DispatchService {
         return responseUtils.getResponse(true, "Medication loaded onto the drone successfully", drone);
     }
 
+    public ResponseEntity<Response> getLoadedMedications(String serialNumber){
+        Optional<Drone> droneOptional = droneRepository.findBySerialNumber(serialNumber);
+        if(droneOptional.isEmpty()){
+            throw new ChallengeException("Drone not found", HttpStatus.NOT_FOUND);
+        }
+        return responseUtils.getResponse(true, "Medications", droneOptional.get());
+    }
+
 }
